@@ -1,0 +1,29 @@
+<!-- templates/dashboard_dojo.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Admin Dojo</title>
+</head>
+<body>
+    <header>
+        <h1>Bienvenido, {{ user.username }} (Admin Dojo)</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'logout' %}">Cerrar sesión</a></li>
+                <li><a href="">Gestionar Mi Dojo</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section>
+        <h2>Panel de Control</h2>
+        <p>Accede a las opciones específicas de tu dojo.</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 SGDP - Sistema de Gestión de Dojos</p>
+    </footer>
+</body>
+</html>

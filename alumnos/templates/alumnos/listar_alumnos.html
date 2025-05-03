@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Alumnos</title>
+</head>
+<body>
+    <h1>Alumnos del Dojo</h1>
+
+    <a href="{% url 'crear_alumno' %}">+ Nuevo Alumno</a>
+    <ul>
+        {% for alumno in alumnos %}
+            <li>{{ alumno.nombre }} {{ alumno.apellido }}</li>
+        {% empty %}
+            <li>No hay alumnos registrados.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

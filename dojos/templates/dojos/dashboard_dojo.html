@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard de Dojo</title>
+</head>
+<body>
+    <h1>{{ message }}</h1>
+    
+    {% if dojo %}
+        <h2>{{ dojo.nombre }}</h2>
+        <p>Ubicación: {{ dojo.ubicacion }}</p>
+        <!--<p>Miembros: {{ dojo.miembros.count }}</p>-->
+        <!-- Aquí puedes agregar más información sobre el dojo -->
+    {% endif %}
+    <!-- Lista de alumnos -->
+    <h3>Alumnos:</h3>
+    <ul>
+        {% for alumno in dojo.alumnos.all %}
+            <li>{{ alumno.nombre }} {{ alumno.apellido }} - <a href="{% url 'editar_alumno' alumno.pk %}">Editar</a> | <a href="{% url 'eliminar_alumno' alumno.pk %}">Eliminar</a></li>
+        {% empty %}
+            <p>No hay alumnos registrados.</p>
+        {% endfor %}
+    </ul>
+
+    <!-- Enlace para agregar un nuevo alumno -->
+    <a href="{% url 'crear_alumno' %}">Agregar nuevo alumno</a>
+        
+    <a href="{% url 'logout' %}">Cerrar sesión</a>
+</body>
+</html>
