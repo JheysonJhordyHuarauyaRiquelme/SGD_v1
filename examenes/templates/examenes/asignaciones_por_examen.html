@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Asignaciones - {{ examen.titulo }}</title>
+</head>
+<body>
+    <h2>Alumnos asignados al examen: {{ examen.titulo }}</h2>
+
+    {% if asignaciones %}
+        <ul>
+            {% for asignacion in asignaciones %}
+                <li>
+                    {{ asignacion.alumno }} — Nota: {{ asignacion.nota }} — Aprobado: {{ asignacion.aprobado }}
+                    |
+                    <a href="{% url 'evaluar_examen' asignacion.id %}">Evaluar</a>
+                    |
+                    <a href="{% url 'editar_asignacion' asignacion.id %}">Editar</a>
+                    |
+                    <a href="{% url 'eliminar_asignacion' asignacion.id %}">Eliminar</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No hay alumnos asignados a este examen.</p>
+    {% endif %}
+
+    <a href="{% url 'listar_examenes' %}">← Volver a exámenes</a>
+</body>
+</html>

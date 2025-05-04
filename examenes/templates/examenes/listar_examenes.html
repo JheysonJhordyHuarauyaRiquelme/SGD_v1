@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lista de Exámenes</title>
+</head>
+<body>
+  <h1>Lista de Exámenes</h1>
+
+  <!-- Enlace para volver al dashboard del dojo -->
+  <a href="{% url 'dashboard_dojo' %}">← Volver al Dashboard</a>
+
+  <a href="{% url 'crear_examen' %}">+ Nuevo Examen</a>
+  <ul>
+    {% for examen in examenes %}
+      <li>
+        {{ examen.titulo }} - {{ examen.fecha }}
+        |
+        <a href="{% url 'editar_examen' examen.id %}">Editar</a>
+        |
+        <a href="{% url 'eliminar_examen' examen.id %}">Eliminar</a>
+        |
+        <a href="{% url 'asignar_examen' %}">Asignar</a>
+        |
+        <a href="{% url 'asignaciones_por_examen' examen.id %}">Ver asignados</a>
+      </li>
+    {% empty %}
+      <li>No hay exámenes registrados.</li>
+    {% endfor %}
+  </ul>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Eliminar Examen</h2>
+    <p>¿Estás seguro de que deseas eliminar el examen "{{ examen.nombre }}"?</p>
+    <form method="post">
+      {% csrf_token %}
+      <button type="submit">Sí, eliminar</button>
+      <a href="{% url 'listar_examenes' %}">Cancelar</a>
+    </form>
+    
+</body>
+</html>

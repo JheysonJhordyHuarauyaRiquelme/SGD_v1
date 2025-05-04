@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Evaluar Examen</title>
+</head>
+<body>
+    <h2>Evaluar Examen para {{ asignacion.alumno }}</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Guardar Evaluación</button>
+    </form>
+</body>
+</html>
