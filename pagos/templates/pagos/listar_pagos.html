@@ -9,7 +9,7 @@
     <ul>
         {% for pago in pagos %}
             <li>
-                {{ pago.alumno }} — {{ pago.monto }} — {{ pago.motivo }} — {{ pago.fecha_pago }}
+                {{ pago.alumno }} — {{ pago.monto }} — {{ pago.concepto }} — {{ pago.fecha_pago }}
                 |
                 <a href="{% url 'editar_pago' pago.pk %}">Editar</a>
                 

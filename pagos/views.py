@@ -30,16 +30,21 @@ def crear_pago(request):
 
 # Vista para editar un pago existente
 @login_required
-def editar_pago(request, pago_id):
-    pago = get_object_or_404(Pago, id=pago_id)
+def editar_pago(request, pk):
+    dojo = request.user.dojo  # acceso directo al dojo del usuario
+    pago = get_object_or_404(Pago, id=pk, dojo=dojo)
+
     if request.method == 'POST':
         form = PagoForm(request.POST, instance=pago)
         if form.is_valid():
-            form.save()
+            pago = form.save(commit=False)
+            pago.dojo = dojo  # asegúrate de mantener la relación
+            pago.save()
             messages.success(request, 'Pago actualizado con éxito')
             return redirect('listar_pagos')
     else:
         form = PagoForm(instance=pago)
+
     return render(request, 'pagos/editar_pago.html', {'form': form})
 
 # Vista para eliminar un pago
