@@ -10,7 +10,7 @@ class ExamenForm(forms.ModelForm):
     )
     class Meta:
         model = Examen
-        fields = ['titulo', 'descripcion', 'fecha', 'pago']
+        fields = ['titulo', 'descripcion', 'fecha', 'monto_pago']
 
 
 

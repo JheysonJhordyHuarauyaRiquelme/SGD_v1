@@ -31,4 +31,6 @@ urlpatterns = [
     path('crear_dojo/', dojo_views.crear_dojo, name='crear_dojo'),  # Asegúrate de tener esta vista
     path('dashboard_general/', dojo_views.dashboard_general, name='dashboard_general'),
     path('dashboard_dojo/', dojo_views.dashboard_dojo, name='dashboard_dojo'),  # Vista para el dojo
+    path('examenes/', include('examenes.urls')),  # URLs para la app exámenes
+    path('pagos/', include('pagos.urls')), # URLs para la app pagos
 ]

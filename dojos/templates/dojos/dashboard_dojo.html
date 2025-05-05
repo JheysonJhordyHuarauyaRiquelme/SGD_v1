@@ -4,29 +4,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard de Dojo</title>
+    <style>
+        body {
+            display: flex;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .sidebar {
+            width: 220px;
+            background-color: #333;
+            color: white;
+            height: 100vh;
+            padding: 20px;
+        }
+        .sidebar a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            margin: 10px 0;
+        }
+        .sidebar a:hover {
+            text-decoration: underline;
+        }
+        .content {
+            flex-grow: 1;
+            padding: 30px;
+        }
+    </style>
 </head>
 <body>
-    <h1>{{ message }}</h1>
-    
-    {% if dojo %}
-        <h2>{{ dojo.nombre }}</h2>
-        <p>Ubicación: {{ dojo.ubicacion }}</p>
-        <!--<p>Miembros: {{ dojo.miembros.count }}</p>-->
-        <!-- Aquí puedes agregar más información sobre el dojo -->
-    {% endif %}
-    <!-- Lista de alumnos -->
-    <h3>Alumnos:</h3>
-    <ul>
-        {% for alumno in dojo.alumnos.all %}
-            <li>{{ alumno.nombre }} {{ alumno.apellido }} - <a href="{% url 'editar_alumno' alumno.pk %}">Editar</a> | <a href="{% url 'eliminar_alumno' alumno.pk %}">Eliminar</a></li>
-        {% empty %}
-            <p>No hay alumnos registrados.</p>
-        {% endfor %}
-    </ul>
+    <div class="sidebar">
+        <h2>Menú</h2>
+        <a href="{% url 'crear_alumno' %}">+ Nuevo Alumno</a>
+        <a href="{% url 'listar_alumnos' %}">Ver Alumnos</a>
+        <a href="{% url 'listar_examenes' %}">Exámenes</a>
+        <a href="{% url 'logout' %}">Cerrar sesión</a>
+    </div>
 
-    <!-- Enlace para agregar un nuevo alumno -->
-    <a href="{% url 'crear_alumno' %}">Agregar nuevo alumno</a>
-        
-    <a href="{% url 'logout' %}">Cerrar sesión</a>
+    <div class="content">
+        <h1>{{ message }}</h1>
+
+        {% if dojo %}
+            <h2>{{ dojo.nombre }}</h2>
+            <p>Ubicación: {{ dojo.ubicacion }}</p>
+        {% endif %}
+
+        <h3>Alumnos:</h3>
+        <ul>
+            {% for alumno in dojo.alumnos.all %}
+                <li>
+                    {{ alumno.nombre }} {{ alumno.apellido }} —
+                    <a href="{% url 'editar_alumno' alumno.pk %}">Editar</a> |
+                    <a href="{% url 'eliminar_alumno' alumno.pk %}">Eliminar</a>
+                </li>
+            {% empty %}
+                <li>No hay alumnos registrados.</li>
+            {% endfor %}
+        </ul>
+    </div>
 </body>
 </html>

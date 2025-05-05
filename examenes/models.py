@@ -8,7 +8,7 @@ class Examen(models.Model):
     titulo = models.CharField(max_length=200)
     descripcion = models.TextField(blank=True)
     fecha = models.DateField()
-    pago = models.DecimalField(max_digits=8, decimal_places=2, default=Decimal('0.00'))  # <-- campo nuevo
+    monto_pago = models.DecimalField(max_digits=8, decimal_places=2, default=Decimal('0.00'))  # <-- campo nuevo
     estado = models.BooleanField(default=True)
     create_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)
